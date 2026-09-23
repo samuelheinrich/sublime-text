@@ -1,0 +1,10 @@
+[
+    {"caption": "FortiOS: Toggle Current Block", "command": "fortios_toggle_block"},
+    {"caption": "FortiOS: Fold Sections (Overview)", "command": "fortios_fold", "args": {"mode": "overview"}},
+    {"caption": "FortiOS: Fold Long Sections", "command": "fortios_fold", "args": {"mode": "long"}},
+    {"caption": "FortiOS: Fold Entries in Current Section", "command": "fortios_fold", "args": {"mode": "entries"}},
+    {"caption": "FortiOS: Fold Certificates and Long Text", "command": "fortios_fold", "args": {"mode": "payloads"}},
+    {"caption": "FortiOS: Unfold Everything", "command": "fortios_unfold_all"},
+    {"caption": "FortiOS: Go to Section", "command": "fortios_sections"},
+    {"caption": "Preferences: FortiOS Settings", "command": "edit_settings", "args": {"base_file": "${packages}/FortiOS/FortiOS.sublime-settings"}}
+]

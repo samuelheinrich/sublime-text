@@ -1,0 +1,156 @@
+%YAML 1.2
+---
+name: FortiOS
+scope: source.fortios
+version: 2
+file_extensions: [fortios, fgt]
+first_line_match: '^#config-version=FG[A-Z0-9]+-'
+variables:
+  important: '(?:name|alias|hostname|ip6?|subnet|netmask|gateway|default-gateway|remote-gw|dst|srcaddr6?|dstaddr6?|srcintf|dstintf|interface|extintf|extip|mappedip|member|members|service|action|status|nat|schedule|allowaccess|logtraffic|utm-status|vlanid|vrf|distance|priority|tcp-portrange|udp-portrange|start-ip|end-ip|src-subnet|dst-subnet|proposal|phase1name)'
+  quiet: '(?:uuid|guid|snmp-index|last-updated|color|x-pos|width|height)'
+  opaque: '(?:certificate|private-key|public-key|ca|hostkey-[\w-]+|buffer|content|http-body|[\w-]*password|[\w-]*passwd|[\w-]*secret|passphrase|api-key|token)'
+  ipv4: '(?:\d{1,3}\.){3}\d{1,3}(?:/\d{1,2})?'
+contexts:
+  main:
+    - include: statements
+    - match: '^[ \t]*(next|end)\b'
+      scope: invalid.illegal.unmatched-block.fortios
+
+  statements:
+    - match: '^[ \t]*#.*$'
+      scope: comment.line.number-sign.fortios
+    - match: '^[ \t]*(config)[ \t]+(.+?)[ \t]*$'
+      captures:
+        1: keyword.control.block.begin.fortios
+        2: entity.name.namespace.fortios
+      push: config-body
+    - match: '^[ \t]*(edit)[ \t]+(.+?)[ \t]*$'
+      captures:
+        1: keyword.control.block.begin.fortios
+        2: entity.name.function.fortios
+      push: edit-body
+    - match: '^[ \t]*(set)[ \t]+({{opaque}})\b'
+      captures:
+        1: keyword.operator.assignment.fortios
+        2: variable.parameter.fortios
+      push: opaque-value
+    - match: '^[ \t]*(set)[ \t]+({{quiet}})\b'
+      scope: meta.metadata.fortios
+      captures:
+        1: keyword.operator.assignment.fortios
+        2: variable.parameter.fortios
+      push: quiet-value
+    - match: '^[ \t]*(set|append|select|unselect)[ \t]+({{important}})\b'
+      captures:
+        1: keyword.operator.assignment.fortios
+        2: variable.parameter.important.fortios
+      push: values
+    - match: '^[ \t]*(set|append|select|unselect)[ \t]+([\w-]+)'
+      captures:
+        1: keyword.operator.assignment.fortios
+        2: variable.parameter.fortios
+      push: values
+    - match: '^[ \t]*(unset|delete|purge|rename|move)\b'
+      scope: keyword.control.mutation.fortios
+      push: values
+    - match: '^[ \t]*(get|show|execute|diagnose|abort)\b'
+      scope: keyword.control.fortios
+      push: values
+
+  config-body:
+    - meta_scope: meta.block.config.fortios
+    - match: '^[ \t]*(end)\b[ \t]*$'
+      scope: keyword.control.block.end.fortios
+      pop: true
+    - include: statements
+    - match: '^[ \t]*next\b'
+      scope: invalid.illegal.unmatched-block.fortios
+
+  edit-body:
+    - meta_scope: meta.block.edit.fortios
+    - match: '^[ \t]*(next)\b[ \t]*$'
+      scope: keyword.control.block.end.fortios
+      pop: true
+    # Reprocess end in the enclosing config context: closes edit AND config.
+    - match: '^(?=[ \t]*end\b[ \t]*$)'
+      pop: true
+    - include: statements
+
+  values:
+    - match: '$'
+      pop: true
+    - match: '\bENC\b'
+      scope: storage.type.encrypted.fortios
+      push: encrypted-value
+    - include: strings
+    - include: atoms
+
+  atoms:
+    - match: '\b{{ipv4}}(?![\w.])'
+      scope: constant.numeric.ip-address.fortios
+    - match: '(?i)\b(?:[0-9a-f]{2}:){5}[0-9a-f]{2}(?![\w:])'
+      scope: constant.other.mac-address.fortios
+    - match: '(?i)(?:\b|(?=::))(?:[0-9a-f]{0,4}:){2,}[0-9a-f:.]*(?:/\d{1,3})?(?![\w:])'
+      scope: constant.numeric.ip-address.fortios
+    - match: '\b(?:accept|allow|permit|enable)\b'
+      scope: constant.language.positive.fortios
+    - match: '\b(?:deny|block|reject|disable)\b'
+      scope: constant.language.negative.fortios
+    - match: '\b(?:all|any|ALL)\b'
+      scope: constant.language.wildcard.fortios
+    - match: '\b(?:tcp|udp|icmp|icmp6|https|http|ssh|ping|snmp|ipsec|ssl)\b'
+      scope: support.constant.protocol.fortios
+    - match: '\b\d+(?:[-:]\d+)*(?![\w.])'
+      scope: constant.numeric.fortios
+
+  strings:
+    - match: '"'
+      scope: punctuation.definition.string.begin.fortios
+      push: double-string
+    - match: "'"
+      scope: punctuation.definition.string.begin.fortios
+      push: single-string
+  double-string:
+    - meta_scope: string.quoted.double.fortios
+    - match: '\\.'
+      scope: constant.character.escape.fortios
+    - match: '"'
+      scope: punctuation.definition.string.end.fortios
+      pop: true
+    - include: atoms
+  single-string:
+    - meta_scope: string.quoted.single.fortios
+    - match: '\\.'
+      scope: constant.character.escape.fortios
+    - match: "'"
+      scope: punctuation.definition.string.end.fortios
+      pop: true
+
+  opaque-value:
+    - match: '$'
+      pop: true
+    - match: '"'
+      push: opaque-double
+    - match: "'"
+      push: opaque-single
+    - match: '[^\s"\x27]+'
+      scope: string.unquoted.opaque.fortios
+  opaque-double:
+    - meta_scope: string.quoted.double.opaque.fortios
+    - match: '\\.'
+    - match: '"'
+      pop: true
+    - match: '-----[A-Z ]+-----'
+      scope: punctuation.definition.pem.fortios
+  opaque-single:
+    - meta_scope: string.quoted.single.opaque.fortios
+    - match: '\\.'
+    - match: "'"
+      pop: true
+  encrypted-value:
+    - meta_scope: string.unquoted.opaque.fortios
+    - match: '$'
+      pop: true
+  quiet-value:
+    - meta_scope: meta.metadata.fortios
+    - include: values

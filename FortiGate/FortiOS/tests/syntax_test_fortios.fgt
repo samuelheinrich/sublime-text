@@ -1,0 +1,65 @@
+# SYNTAX TEST "Packages/FortiOS/FortiOS.sublime-syntax"
+config firewall policy
+# <- keyword.control.block.begin.fortios
+#      ^ entity.name.namespace.fortios
+    edit 1
+#   ^ keyword.control.block.begin.fortios
+#        ^ entity.name.function.fortios
+        set srcintf "wan1"
+#           ^ variable.parameter.important.fortios
+#                    ^ string.quoted.double.fortios
+        set action accept
+#                  ^ constant.language.positive.fortios
+        set status disable
+#                  ^ constant.language.negative.fortios
+        set srcaddr "all"
+#                    ^ constant.language.wildcard.fortios
+        set subnet 192.0.2.0 255.255.255.0
+#                  ^ constant.numeric.ip-address.fortios
+        set ip6 2001:db8::1/64
+#               ^ constant.numeric.ip-address.fortios
+        set uuid 1234-abcd
+#           ^ meta.metadata.fortios
+        set password ENC placeholder
+#                        ^ string.unquoted.opaque.fortios
+        set certificate "-----BEGIN CERTIFICATE-----
+#                         ^ punctuation.definition.pem.fortios
+next
+# <- string.quoted.double.opaque.fortios - keyword
+end
+# <- string.quoted.double.opaque.fortios - keyword
+-----END CERTIFICATE-----"
+# <- punctuation.definition.pem.fortios
+        set action deny
+#                  ^ constant.language.negative.fortios
+        set buffer "<html title=\"demo\">
+#                               ^ string.quoted.double.opaque.fortios
+config pretend
+# <- string.quoted.double.opaque.fortios - keyword
+</html>"
+        set script "config fake
+end
+# <- string.quoted.double.fortios - keyword
+"
+        config nested
+            edit "entry"
+            next
+#           ^ keyword.control.block.end.fortios
+        end
+#       ^ keyword.control.block.end.fortios
+    next
+#   ^ keyword.control.block.end.fortios
+end
+# <- keyword.control.block.end.fortios
+config vdom
+edit "lab"
+config system settings
+set hostname "test"
+end
+end
+# <- keyword.control.block.end.fortios
+config system global
+# <- meta.block.config.fortios - meta.block.edit.fortios
+end
+end
+# <- invalid.illegal.unmatched-block.fortios

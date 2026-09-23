@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+FortiGate/fortigate-sample-config.txt
+FortiGate/dist/
+FortiGate/private/
+*.pem
+*.key
+.env
+.env.*

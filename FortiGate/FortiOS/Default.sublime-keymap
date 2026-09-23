@@ -1,0 +1,4 @@
+[
+    {"keys": ["ctrl+alt+["], "command": "fortios_toggle_block", "context": [{"key": "selector", "operator": "equal", "operand": "source.fortios"}]},
+    {"keys": ["ctrl+alt+]"], "command": "fortios_unfold_all", "context": [{"key": "selector", "operator": "equal", "operand": "source.fortios"}]}
+]

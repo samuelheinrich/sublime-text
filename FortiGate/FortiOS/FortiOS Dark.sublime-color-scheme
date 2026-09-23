@@ -1,0 +1,37 @@
+{
+    "name": "FortiOS Dark",
+    "globals": {
+        "background": "#18212B",
+        "foreground": "#D7E0EB",
+        "caret": "#FFFFFF",
+        "selection": "#354D65",
+        "line_highlight": "#202D3A",
+        "gutter": "#18212B",
+        "gutter_foreground": "#76879A",
+        "guide": "#344557",
+        "active_guide": "#79C0FF",
+        "fold_marker": "#FFC66D",
+        "brackets_foreground": "#FFC66D"
+    },
+    "rules": [
+        {"scope": "comment", "foreground": "#7D8EA2"},
+        {"scope": "keyword", "foreground": "#91A8C0"},
+        {"scope": "keyword.control.block.begin.fortios", "foreground": "#C6A0F6", "font_style": "bold"},
+        {"scope": "keyword.control.block.end.fortios", "foreground": "#8296AD"},
+        {"scope": "entity.name.namespace.fortios", "foreground": "#79C0FF", "font_style": "bold"},
+        {"scope": "entity.name.function.fortios", "foreground": "#FFD58A", "font_style": "bold"},
+        {"scope": "variable.parameter.fortios", "foreground": "#A6B5C7"},
+        {"scope": "variable.parameter.important.fortios", "foreground": "#DCE7F5", "font_style": "bold"},
+        {"scope": "string", "foreground": "#B7D7A8"},
+        {"scope": "constant.numeric, constant.other.mac-address", "foreground": "#70D6DC"},
+        {"scope": "support.constant.protocol", "foreground": "#B2BBFF"},
+        {"scope": "constant.language.positive", "foreground": "#8DDD9B", "font_style": "bold"},
+        {"scope": "constant.language.negative, keyword.control.mutation", "foreground": "#FF9393", "font_style": "bold"},
+        {"scope": "constant.language.wildcard", "foreground": "#FFD58A", "font_style": "bold"},
+        {"scope": "constant.character.escape", "foreground": "#D6B0FF"},
+        {"scope": "meta.metadata.fortios, meta.metadata.fortios variable, meta.metadata.fortios keyword, meta.metadata.fortios constant, meta.metadata.fortios string", "foreground": "#748397"},
+        {"scope": "string.quoted.double.opaque, string.quoted.single.opaque, string.unquoted.opaque", "foreground": "#748397"},
+        {"scope": "punctuation.definition.pem", "foreground": "#94A3B5"},
+        {"scope": "invalid", "foreground": "#FFFFFF", "background": "#923F4C"}
+    ]
+}

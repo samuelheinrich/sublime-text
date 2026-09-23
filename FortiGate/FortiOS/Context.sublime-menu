@@ -1,0 +1,11 @@
+[
+    {"caption": "FortiOS", "children": [
+        {"caption": "Toggle Current Block", "command": "fortios_toggle_block"},
+        {"caption": "Fold Sections (Overview)", "command": "fortios_fold", "args": {"mode": "overview"}},
+        {"caption": "Fold Long Sections", "command": "fortios_fold", "args": {"mode": "long"}},
+        {"caption": "Fold Entries in Current Section", "command": "fortios_fold", "args": {"mode": "entries"}},
+        {"caption": "Fold Certificates and Long Text", "command": "fortios_fold", "args": {"mode": "payloads"}},
+        {"caption": "Unfold Everything", "command": "fortios_unfold_all"},
+        {"caption": "Go to Section", "command": "fortios_sections"}
+    ]}
+]
