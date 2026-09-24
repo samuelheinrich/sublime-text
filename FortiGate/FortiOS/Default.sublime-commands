@@ -6,5 +6,7 @@
     {"caption": "FortiOS: Fold Certificates and Long Text", "command": "fortios_fold", "args": {"mode": "payloads"}},
     {"caption": "FortiOS: Unfold Everything", "command": "fortios_unfold_all"},
     {"caption": "FortiOS: Go to Section", "command": "fortios_sections"},
+    {"caption": "FortiOS: Color Scheme – Dark", "command": "fortios_color_scheme", "args": {"name": "FortiOS Dark"}},
+    {"caption": "FortiOS: Color Scheme – FMG Style", "command": "fortios_color_scheme", "args": {"name": "FortiOS FMG Style"}},
     {"caption": "Preferences: FortiOS Settings", "command": "edit_settings", "args": {"base_file": "${packages}/FortiOS/FortiOS.sublime-settings"}}
 ]

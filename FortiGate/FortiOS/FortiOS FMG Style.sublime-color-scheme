@@ -1,0 +1,29 @@
+{
+    "name": "FortiOS FMG Style",
+    "variables": {
+        "keyword": "#620075",
+        "value": "#0F7743",
+        "comment": "#984203",
+        "text": "#000000"
+    },
+    "globals": {
+        "background": "#FFFFFF",
+        "foreground": "var(text)",
+        "caret": "#000000",
+        "selection": "#B5D5FF",
+        "line_highlight": "#E3EFFF",
+        "gutter": "#F5F5F5",
+        "gutter_foreground": "#878787",
+        "guide": "#E4E4E4",
+        "active_guide": "#B8B8B8",
+        "fold_marker": "var(keyword)",
+        "brackets_foreground": "var(keyword)"
+    },
+    "rules": [
+        {"scope": "comment", "foreground": "var(comment)"},
+        {"scope": "keyword", "foreground": "var(keyword)"},
+        {"scope": "entity.name.namespace, variable.parameter", "foreground": "var(text)"},
+        {"scope": "entity.name.function, string, constant, storage.type.encrypted, punctuation.definition.pem", "foreground": "var(value)"},
+        {"scope": "invalid", "foreground": "var(text)", "background": "#FFD9D9"}
+    ]
+}

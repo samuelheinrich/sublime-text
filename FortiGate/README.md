@@ -33,7 +33,7 @@ die falsche Grenze erkennt, die **FortiOS-Befehle** verwenden: Diese ermitteln d
 
 ## Visuelle Darstellung
 
-Das mitgelieferte dunkle Farbschema wird nur für die FortiOS-Syntax eingestellt.
+Das mitgelieferte dunkle Farbschema wird standardmäßig nur für die FortiOS-Syntax eingestellt.
 
 | Element | Darstellung |
 | --- | --- |
@@ -45,6 +45,22 @@ Das mitgelieferte dunkle Farbschema wird nur für die FortiOS-Syntax eingestellt
 | `deny`, `disable`, Änderungsbefehle wie `delete` | Rot, fett |
 | `all`, `any` | Gold, fett |
 | Zertifikate, Schlüssel, HTML-Nutzdaten, UUIDs und Verwaltungsmetadaten | Gedämpftes Grau |
+
+### FortiOS FMG Style
+
+Ein zweites, helles Schema bildet die schlichte Konfigurationsansicht des FortiManagers nach
+(Farben aus einem FortiManager-Screenshot gemessen). Es kommt mit vier Textfarben aus:
+
+| Element | Farbe |
+| --- | --- |
+| Befehle `config`, `edit`, `set`, `next`, `end`, `unset` … | Lila `#620075` |
+| Abschnitts- und Parameternamen | Schwarz `#000000` |
+| Werte: Strings, Zahlen, IPs, `enable`/`disable`, Objektnamen nach `edit` | Grün `#0F7743` |
+| Kommentare und Backup-Header `#…` | Braun `#984203` |
+
+Hintergrund Weiß, Zeilennummern Grau auf `#F5F5F5`, aktive Zeile hellblau `#E3EFFF`.
+Umschalten über die Command Palette: **FortiOS: Color Scheme – FMG Style** bzw.
+**FortiOS: Color Scheme – Dark**. Die Auswahl wird in den FortiOS-Benutzereinstellungen gespeichert.
 
 Die Farben beschreiben Werte, keine Sicherheitsbewertung: `disable` kann beispielsweise
 auch eine Schutzfunktion deaktivieren. IP-Muster dienen der Darstellung, nicht der Adressvalidierung.
@@ -103,6 +119,7 @@ Die ausführliche Begründung und Messwerte stehen in [ANALYSE.md](ANALYSE.md).
 | --- | --- |
 | `FortiOS/FortiOS.sublime-syntax` | Verschachtelte Syntaxkontexte, Werte und mehrzeilige Strings |
 | `FortiOS/FortiOS Dark.sublime-color-scheme` | Visuelle Gewichtung |
+| `FortiOS/FortiOS FMG Style.sublime-color-scheme` | Helles Vier-Farben-Schema im FortiManager-Stil |
 | `FortiOS/fortios_parser.py` | Block-/Textgrenzen ohne Abhängigkeit von Sublime oder Einrückung |
 | `FortiOS/fortios.py` | Faltung, Abschnittsnavigation, Headererkennung und Cache |
 | `FortiOS/Symbols.tmPreferences` | Abschnitts- und Objektsymbole für die Navigation |
