@@ -1,0 +1,8 @@
+%YAML 1.2
+---
+# Same grammar as FortiOS; a separate syntax so it can carry its own color scheme.
+name: FortiOS FMG Style
+scope: source.fortios.fmg
+version: 2
+extends: Packages/FortiOS/FortiOS.sublime-syntax
+contexts: {}

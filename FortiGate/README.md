@@ -59,8 +59,10 @@ Ein zweites, helles Schema bildet die schlichte Konfigurationsansicht des FortiM
 | Kommentare und Backup-Header `#…` | Braun `#984203` |
 
 Hintergrund Weiß, Zeilennummern Grau auf `#F5F5F5`, aktive Zeile hellblau `#E3EFFF`.
-Umschalten über die Command Palette: **FortiOS: Color Scheme – FMG Style** bzw.
-**FortiOS: Color Scheme – Dark**. Die Auswahl wird in den FortiOS-Benutzereinstellungen gespeichert.
+Das Schema ist als eigene Syntax eingebunden: **View → Syntax → FortiOS → FortiOS FMG Style**.
+Grammatik, Faltung und Befehle sind identisch mit **FortiOS**; nur die Farben unterscheiden sich.
+Dateien öffnen standardmäßig mit **FortiOS** (dunkel). Wer immer den FMG-Stil möchte, stellt über
+**View → Syntax → Open all with current extension as… → FortiOS → FortiOS FMG Style** um.
 
 Die Farben beschreiben Werte, keine Sicherheitsbewertung: `disable` kann beispielsweise
 auch eine Schutzfunktion deaktivieren. IP-Muster dienen der Darstellung, nicht der Adressvalidierung.
@@ -119,6 +121,7 @@ Die ausführliche Begründung und Messwerte stehen in [ANALYSE.md](ANALYSE.md).
 | --- | --- |
 | `FortiOS/FortiOS.sublime-syntax` | Verschachtelte Syntaxkontexte, Werte und mehrzeilige Strings |
 | `FortiOS/FortiOS Dark.sublime-color-scheme` | Visuelle Gewichtung |
+| `FortiOS/FortiOS FMG Style.sublime-syntax` | Erbt die FortiOS-Grammatik; eigene Syntax für das FMG-Schema |
 | `FortiOS/FortiOS FMG Style.sublime-color-scheme` | Helles Vier-Farben-Schema im FortiManager-Stil |
 | `FortiOS/fortios_parser.py` | Block-/Textgrenzen ohne Abhängigkeit von Sublime oder Einrückung |
 | `FortiOS/fortios.py` | Faltung, Abschnittsnavigation, Headererkennung und Cache |

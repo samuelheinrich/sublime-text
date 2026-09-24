@@ -151,14 +151,6 @@ def prepare(view):
         view.fold(payload_regions(view, document(view)))
 
 
-class FortiosColorSchemeCommand(sublime_plugin.ApplicationCommand):
-    """Store the chosen bundled scheme in the user's FortiOS syntax settings."""
-    def run(self, name):
-        settings = sublime.load_settings('FortiOS.sublime-settings')
-        settings.set('color_scheme', 'Packages/FortiOS/%s.sublime-color-scheme' % name)
-        sublime.save_settings('FortiOS.sublime-settings')
-
-
 class FortiosListener(sublime_plugin.EventListener):
     def on_post_text_command(self, view, command_name, args):
         if command_name == 'set_file_type':
