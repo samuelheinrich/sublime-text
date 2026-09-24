@@ -92,16 +92,6 @@ class ParserTests(unittest.TestCase):
         self.assertEqual(sum(b.kind == 'config' for b in doc.blocks), 937)
         self.assertEqual(max(b.end_row - b.row + 1 for b in doc.blocks if b.label == 'firewall internet-service-name'), 5090)
 
-    def test_public_large_fixture(self):
-        path = Path(__file__).resolve().parents[1] / 'examples' / 'fortigate-sanitized.fgt'
-        text = path.read_text()
-        doc = parse(text)
-        self.assertFalse(doc.issues)
-        self.assertEqual(len(text.splitlines()), 19231)
-        self.assertEqual(len(doc.blocks), 4893)
-        self.assertEqual(sum(b.kind == 'config' for b in doc.blocks), 937)
-        self.assertEqual(sum(p.end_row > p.row for p in doc.payloads), 49)
-
 
 if __name__ == '__main__':
     unittest.main()

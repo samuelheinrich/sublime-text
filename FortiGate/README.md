@@ -1,90 +1,93 @@
-# FortiOS für Sublime Text
+# FortiOS for Sublime Text
 
-Eine erste funktionsfähige Erweiterung für **Sublime Text 4**:
-Syntaxfarben, semantische Blockfaltung und Navigation für FortiGate-/FortiOS-Konfigurationen.
-Entwickelt und direkt in Sublime Text Build 4213 mit der lokalen Beispielkonfiguration geprüft.
+A working extension for **Sublime Text 4**: syntax highlighting, semantic block folding
+and navigation for FortiGate / FortiOS configurations.
+Developed and tested directly in Sublime Text Build 4213.
 
-## Verwendung
-
-Nach der Installation eine Beispielkonfiguration öffnen oder **View → Syntax → FortiOS** wählen.
-Bei einer Installation als Entwicklungs-Symlink lädt Sublime Änderungen an den Quelldateien automatisch.
-
-Mit **⌘⇧P** auf macOS bzw. **Ctrl+Shift+P** auf Windows/Linux die Command Palette öffnen
-und `FortiOS` eingeben. Dieselben Aktionen stehen im Rechtsklickmenü.
-
-| Befehl | Wirkung |
+| FortiOS (dark) | FortiOS FMG Style (light) |
 | --- | --- |
-| **Toggle Current Block** | Innersten Block am Cursor auf-/zuklappen; Kopfzeile und `next`/`end` bleiben sichtbar. |
-| **Fold Sections (Overview)** | Fachabschnitte einklappen; `config global`, `config vdom` und VDOM-Namen bleiben sichtbar. |
-| **Fold Long Sections** | `config`-Abschnitte ab 200 Zeilen einklappen; Global-/VDOM-Rahmen bleiben offen. |
-| **Fold Entries in Current Section** | Direkte `edit`-Einträge des aktuellen `config`-Abschnitts einklappen, etwa alle Adressobjekte oder Policies. |
-| **Fold Certificates and Long Text** | Lange Zertifikate, Schlüssel, verschlüsselte Werte und mehrzeilige Texte einklappen. |
-| **Unfold Everything** | Alle Faltungen im Dokument aufheben. |
-| **Go to Section** | Abschnitte durchsuchen, einschließlich VDOM-/Elternpfad, Zeilennummer und Länge. |
+| <img src="docs/screenshot-dark.png" alt="Dark FortiOS color scheme" width="420"> | <img src="docs/screenshot-fmg.png" alt="Light FortiOS FMG Style color scheme" width="420"> |
 
-Zusätzlich **Ctrl+Alt+[** für den aktuellen Block und **Ctrl+Alt+]** für alles aufklappen.
-Auf Tastaturlayouts ohne direkt erreichbare eckige Klammern empfiehlt sich die Command Palette.
-Sublimes Symbolnavigation (**⌘R / Ctrl+R**) zeigt Abschnitte und Objekte.
+## Usage
 
-Die normalen Faltpfeile links funktionieren weiterhin über Sublimes Einrückungserkennung.
-Für nicht eingerückte Global-/VDOM-Blöcke und andere Fälle, in denen der Pfeil fehlt oder
-die falsche Grenze erkennt, die **FortiOS-Befehle** verwenden: Diese ermitteln die Grenzen aus
-`config`, `edit`, `next` und `end`. Es werden keine Einrückungen oder Inhalte verändert.
+After installing, open a configuration or choose **View → Syntax → FortiOS**.
+The submenu offers **FortiOS** (dark) and **FortiOS FMG Style** (light); both share the
+same grammar, folding and commands. With a development symlink, Sublime reloads changes
+to the source files automatically.
 
-## Visuelle Darstellung
+Press **⌘⇧P** on macOS or **Ctrl+Shift+P** on Windows/Linux to open the Command Palette
+and type `FortiOS`. The same actions are available in the context menu.
 
-Das mitgelieferte dunkle Farbschema wird standardmäßig nur für die FortiOS-Syntax eingestellt.
-
-| Element | Darstellung |
+| Command | Effect |
 | --- | --- |
-| Abschnitt, z. B. `firewall policy` | Blau, fett |
-| Objektname / Policy-ID nach `edit` | Gold, fett |
-| Wichtige Parameter wie `srcintf`, `dstaddr`, `action`, `ip`, `gateway` | Hell, fett |
-| IP-Adressen, Netze, Zahlen, Portbereiche | Türkis |
-| `accept`, `enable` | Grün, fett |
-| `deny`, `disable`, Änderungsbefehle wie `delete` | Rot, fett |
-| `all`, `any` | Gold, fett |
-| Zertifikate, Schlüssel, HTML-Nutzdaten, UUIDs und Verwaltungsmetadaten | Gedämpftes Grau |
+| **Toggle Current Block** | Fold/unfold the innermost block at the cursor; the header line and `next`/`end` stay visible. |
+| **Fold Sections (Overview)** | Fold topic sections; `config global`, `config vdom` and VDOM names stay visible. |
+| **Fold Long Sections** | Fold `config` sections with 200 or more lines; global/VDOM wrappers stay open. |
+| **Fold Entries in Current Section** | Fold the direct `edit` entries of the current `config` section, e.g. all address objects or policies. |
+| **Fold Certificates and Long Text** | Fold long certificates, keys, encrypted values and multi-line text. |
+| **Unfold Everything** | Remove all folds in the document. |
+| **Go to Section** | Search sections, including VDOM/parent path, line number and length. |
 
-### FortiOS FMG Style
+**Ctrl+Alt+[** toggles the current block and **Ctrl+Alt+]** unfolds everything.
+On keyboard layouts without direct access to square brackets, use the Command Palette.
+Sublime's symbol navigation (**⌘R / Ctrl+R**) lists sections and objects.
 
-Ein zweites, helles Schema bildet die schlichte Konfigurationsansicht des FortiManagers nach
-(Farben aus einem FortiManager-Screenshot gemessen). Es kommt mit vier Textfarben aus:
+The regular fold arrows in the gutter keep working through Sublime's indentation detection.
+For unindented global/VDOM blocks and other cases where the arrow is missing or picks the
+wrong boundary, use the **FortiOS commands**: they derive boundaries from `config`, `edit`,
+`next` and `end`. Indentation and content are never modified.
 
-| Element | Farbe |
+## Color schemes
+
+### FortiOS (dark)
+
+The default scheme for the **FortiOS** syntax. It is only applied to FortiOS files.
+
+| Element | Appearance |
 | --- | --- |
-| Befehle `config`, `edit`, `set`, `next`, `end`, `unset` … | Lila `#620075` |
-| Abschnitts- und Parameternamen | Schwarz `#000000` |
-| Werte: Strings, Zahlen, IPs, `enable`/`disable`, Objektnamen nach `edit` | Grün `#0F7743` |
-| Kommentare und Backup-Header `#…` | Braun `#984203` |
+| Section, e.g. `firewall policy` | Blue, bold |
+| Object name / policy ID after `edit` | Gold, bold |
+| Important parameters such as `srcintf`, `dstaddr`, `action`, `ip`, `gateway` | Bright, bold |
+| IP addresses, networks, numbers, port ranges | Cyan |
+| `accept`, `enable` | Green, bold |
+| `deny`, `disable`, mutation commands such as `delete` | Red, bold |
+| `all`, `any` | Gold, bold |
+| Certificates, keys, HTML payloads, UUIDs and management metadata | Muted gray |
 
-Hintergrund Weiß, Zeilennummern Grau auf `#F5F5F5`, aktive Zeile hellblau `#E3EFFF`.
-Das Schema ist als eigene Syntax eingebunden: **View → Syntax → FortiOS → FortiOS FMG Style**.
-Grammatik, Faltung und Befehle sind identisch mit **FortiOS**; nur die Farben unterscheiden sich.
-Dateien öffnen standardmäßig mit **FortiOS** (dunkel). Wer immer den FMG-Stil möchte, stellt über
-**View → Syntax → Open all with current extension as… → FortiOS → FortiOS FMG Style** um.
+### FortiOS FMG Style (light)
 
-Die Farben beschreiben Werte, keine Sicherheitsbewertung: `disable` kann beispielsweise
-auch eine Schutzfunktion deaktivieren. IP-Muster dienen der Darstellung, nicht der Adressvalidierung.
-Falten und Abdunkeln sind ausschließlich Anzeigeoperationen; der vollständige Text bleibt in der Datei.
+A second, light scheme that recreates the plain configuration view of FortiManager
+(colors measured from a FortiManager screenshot). It uses only four text colors:
 
-Eine kleine Konfiguration mit fiktiven Werten liegt unter [examples/overview.fgt](FortiOS/examples/overview.fgt).
-Für große Faltungen gibt es außerdem eine [bereinigte Testdatei mit 19.231 Zeilen](examples/fortigate-sanitized.fgt).
-Alle ursprünglichen Werte und Objektnamen wurden durch künstliche Daten ersetzt;
-die Datei ist nicht als Gerätekonfiguration verwendbar. [Details zur Bereinigung](examples/README.md).
+| Element | Color |
+| --- | --- |
+| Commands `config`, `edit`, `set`, `next`, `end`, `unset` … | Purple `#620075` |
+| Section and parameter names | Black `#000000` |
+| Values: strings, numbers, IPs, `enable`/`disable`, object names after `edit` | Green `#0F7743` |
+| Comments and the `#…` backup header | Brown `#984203` |
 
-## Automatik und Einstellungen
+White background, gray line numbers on `#F5F5F5`, light blue current line `#E3EFFF`.
 
-Dateien mit `.fgt` und `.fortios` werden automatisch zugeordnet. Ein FortiGate-Backup-Header
-`#config-version=FG…-…` aktiviert die Syntax auch bei `.txt`, `.cfg` oder `.conf`.
-Dadurch funktioniert die Erkennung zusammen mit dem Cisco-Paket, das `.txt` und `.cfg` beansprucht.
-Dateien ohne eindeutigen Header und ohne spezifische Endung bitte manuell zuordnen.
+The scheme is shipped as its own syntax: **View → Syntax → FortiOS → FortiOS FMG Style**.
+Files open with **FortiOS** (dark) by default. To always use the FMG style, open a file and choose
+**View → Syntax → Open all with current extension as… → FortiOS → FortiOS FMG Style**.
 
-Lange Nutzdaten werden beim ersten Aktivieren eines Dokuments automatisch gefaltet.
-Nach manuellem Aufklappen bleiben sie während dieser Sitzung offen; beim Tabwechsel werden
-sie nicht erneut zugeklappt. Lange Konfigurationsabschnitte werden auf Wunsch per Befehl gefaltet.
+Colors describe values, not a security rating: `disable` may just as well turn off a
+protection feature. IP patterns are for display only, not address validation.
+Folding and muting are display operations only; the full text always stays in the file.
 
-**Preferences: FortiOS Settings** in der Command Palette öffnet die Benutzereinstellungen:
+## Detection and settings
+
+Files ending in `.fgt` and `.fortios` are assigned automatically. A FortiGate backup header
+`#config-version=FG…-…` also activates the syntax for `.txt`, `.cfg` or `.conf`.
+This keeps detection working alongside the Cisco package, which claims `.txt` and `.cfg`.
+Assign files without a clear header or specific extension manually.
+
+Long payloads are folded automatically the first time a document is activated.
+After unfolding them manually they stay open for the session; switching tabs does not
+fold them again. Long configuration sections are folded on demand via command.
+
+**Preferences: FortiOS Settings** in the Command Palette opens the user settings:
 
 ```json
 {
@@ -96,45 +99,45 @@ sie nicht erneut zugeklappt. Lange Konfigurationsabschnitte werden auf Wunsch pe
 }
 ```
 
-Eine der beiden Nutzdaten-Schwellen genügt. Mehrzeilige Skripte und Beschreibungen können
-damit ebenfalls gefaltet werden. Kurze normale Strings und lange Objektlisten werden nicht automatisch versteckt.
-Für ein anderes Farbschema hier zusätzlich `color_scheme` auf dessen Sublime-Ressourcenpfad setzen.
+Either payload threshold is sufficient. Multi-line scripts and descriptions can be folded
+this way too. Short regular strings and long object lists are never hidden automatically.
+To use a different color scheme, also set `color_scheme` to its Sublime resource path.
 
-## Installation auf einem weiteren Rechner
+## Installing on another machine
 
-1. `python3 FortiGate/tools/build_package.py` vom Projektordner aus ausführen.
-2. In Sublime **Preferences → Browse Packages…** öffnen.
-3. Eine Ebene höher in `Installed Packages` wechseln und
-   `FortiGate/dist/FortiOS.sublime-package` hineinkopieren.
-4. Die Konfiguration öffnen und bei Bedarf **View → Syntax → FortiOS** wählen.
+1. Run `python3 FortiGate/tools/build_package.py` from the project folder.
+2. In Sublime, open **Preferences → Browse Packages…**.
+3. Go one level up into `Installed Packages` and copy
+   `FortiGate/dist/FortiOS.sublime-package` into it.
+4. Open a configuration and, if needed, choose **View → Syntax → FortiOS**.
 
-Alternativ den Quellordner `FortiGate/FortiOS` als `FortiOS` nach `Packages` kopieren.
-Für lokale Entwicklung einen Symlink auf diesen Ordner verwenden. Nur eine Installationsform
-gleichzeitig einsetzen. Zum Entfernen den Symlink, Paketordner oder das installierte Archiv löschen.
-Das Archiv enthält ausschließlich die Erweiterung, Syntaxprüfungen und die fiktive Demo.
+Alternatively, copy the source folder `FortiGate/FortiOS` as `FortiOS` into `Packages`.
+For local development, use a symlink to that folder. Use only one installation method
+at a time. To uninstall, delete the symlink, package folder or installed archive.
+The archive contains only the extension and its syntax tests.
 
-## Analyse und Aufbau
+## Analysis and structure
 
-Die ausführliche Begründung und Messwerte stehen in [ANALYSE.md](ANALYSE.md).
+The detailed reasoning and measurements are in [ANALYSIS.md](ANALYSIS.md).
 
-| Datei | Aufgabe |
+| File | Purpose |
 | --- | --- |
-| `FortiOS/FortiOS.sublime-syntax` | Verschachtelte Syntaxkontexte, Werte und mehrzeilige Strings |
-| `FortiOS/FortiOS Dark.sublime-color-scheme` | Visuelle Gewichtung |
-| `FortiOS/FortiOS FMG Style.sublime-syntax` | Erbt die FortiOS-Grammatik; eigene Syntax für das FMG-Schema |
-| `FortiOS/FortiOS FMG Style.sublime-color-scheme` | Helles Vier-Farben-Schema im FortiManager-Stil |
-| `FortiOS/fortios_parser.py` | Block-/Textgrenzen ohne Abhängigkeit von Sublime oder Einrückung |
-| `FortiOS/fortios.py` | Faltung, Abschnittsnavigation, Headererkennung und Cache |
-| `FortiOS/Symbols.tmPreferences` | Abschnitts- und Objektsymbole für die Navigation |
+| `FortiOS/FortiOS.sublime-syntax` | Nested syntax contexts, values and multi-line strings |
+| `FortiOS/FortiOS Dark.sublime-color-scheme` | Visual weighting for the dark scheme |
+| `FortiOS/FortiOS FMG Style.sublime-syntax` | Inherits the FortiOS grammar; separate syntax for the FMG scheme |
+| `FortiOS/FortiOS FMG Style.sublime-color-scheme` | Light four-color scheme in FortiManager style |
+| `FortiOS/fortios_parser.py` | Block/text boundaries independent of Sublime or indentation |
+| `FortiOS/fortios.py` | Folding, section navigation, header detection and cache |
+| `FortiOS/Symbols.tmPreferences` | Section and object symbols for navigation |
 
-Es gibt keine externe Laufzeitabhängigkeit. Der Parser liest den Text linear und wird pro
-Dokumentversion zwischengespeichert. Er läuft bei Bedarf für Falt- und Navigationsbefehle,
-nicht bei jedem Tastendruck. Mehrzeilige Strings respektieren einfache/doppelte Anführungszeichen
-und Backslash-Escapes. Unvollständige Blöcke werden nicht bis ans Dateiende zugefaltet.
+There are no external runtime dependencies. The parser reads the text linearly and is
+cached per document version. It runs on demand for folding and navigation commands,
+not on every keystroke. Multi-line strings respect single/double quotes and backslash
+escapes. Incomplete blocks are never folded to the end of the file.
 
-Die Erweiterung ist kein FortiOS-Konfigurationsvalidator. Unbekannte FortiOS-Parameter bleiben
-lesbar und erhalten die allgemeine Parameterfarbe. Gerätespezifische oder künftige Syntaxvarianten
-können anhand weiterer Beispiele ergänzt werden.
+The extension is not a FortiOS configuration validator. Unknown FortiOS parameters stay
+readable and get the generic parameter color. Device-specific or future syntax variants
+can be added based on further examples.
 
 ## Tests
 
@@ -143,11 +146,6 @@ python3 -m unittest discover -s FortiGate/tests -v
 python3 FortiGate/tools/build_package.py
 ```
 
-Für Sublimes native Syntaxprüfungen `FortiOS/tests/syntax_test_fortios.fgt` im installierten
-Paket öffnen und **Tools → Build** ausführen. Die große öffentliche Testdatei wird immer geprüft.
-Zusätzliche Tests der privaten Beispieldatei werden übersprungen, wenn sie lokal nicht vorhanden ist.
-
-Bei der Erstprüfung: 13 Python-Tests und 28 native Syntaxprüfungen erfolgreich. Hinzu kommen
-Tests für die Bereinigung und die öffentliche Testdatei. Zusätzlich wurden
-Faltbefehle, automatische Erkennung trotz Cisco-Zuordnung, Farben und Syntaxleistung an der gesamten
-Beispieldatei direkt in Sublime geprüft. Details in [ANALYSE.md](ANALYSE.md).
+For Sublime's native syntax tests, open `FortiOS/tests/syntax_test_fortios.fgt` in the
+installed package and run **Tools → Build**. An additional comparison test against a private
+local backup is skipped when that file is not present.
